@@ -31,8 +31,3 @@ module.exports = {
     createTokenForUser,
     validateToken,
 };
-
-module.exports = {
-    createTokenForUser,
-    validateToken
-}
