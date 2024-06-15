@@ -28,6 +28,10 @@ router.get('/logout', (req,res) => {
   res.clearCookie("token").redirect('/')
 })
 
+router.get("/addblog", (req, res) => {
+  return res.render("addBlog");
+});
+
 router.post("/signup", async (req, res) => {
   const { fullName, email, password } = req.body;
   await User.create({

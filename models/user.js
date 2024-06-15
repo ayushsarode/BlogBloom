@@ -6,6 +6,8 @@ const userSchema = new mongoose.Schema({
     fullName: {
         type: String,
         required: true,
+        minlength: [3, 'Text input must be at least 3 characters'],
+        maxlength: [20, 'Text input must be at most 20 characters'],
     },
     email: {
         type: String,

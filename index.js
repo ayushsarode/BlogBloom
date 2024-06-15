@@ -1,9 +1,12 @@
 const express = require('express')
 const path = require('path')
-const userRoute = require('./routes/user')
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser');
 const {checkForAuthenticationCookie } = require('./middleware/authentication')
+
+
+const userRoute = require('./routes/user')
+const blogRoute = require('./routes/blog')
 
 const app = express()
 PORT = 8001;
@@ -21,8 +24,11 @@ mongoose.connect('mongodb://localhost:27017/bloomblog')
 app.set('view engine', 'ejs')
 app.set('views', path.resolve('./views'))
 
+
+
 app.use(express.urlencoded({ extended: false }));
 app.use('/user', userRoute);
+app.use('/blog', blogRoute);
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie('token'));
 

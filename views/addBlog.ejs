@@ -8,10 +8,29 @@
 
 </head>
 
-<body style="background-color: black;">
+<body style="background-color: black; color: white;">
 <%- include('./partials/nav.ejs') %>
-<div style="color: white;">
-</div>
+<div style="color: white;"></div>
+<form action="" class="container mt-3">
+    <div class="mb-3">
+        <label for="coverImage" class="form-label">Cover Image</label>
+        <input type="file" class="form-control" id="coverImage" name="coverImage" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="body">Create Your Blog</label>
+        <textarea name="body" class="form-control" id="body"></textarea>
+        
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-primary">Submit</button>
+        
+    </div>
+    
+</form>
     <%- include('./partials/scripts.ejs') %>
 </body>
 
