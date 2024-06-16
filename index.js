@@ -2,11 +2,15 @@ const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser');
-const {checkForAuthenticationCookie } = require('./middleware/authentication')
+const bodyParser = require('body-parser');
+const Blog = require("./models/blog");
 
 
 const userRoute = require('./routes/user')
 const blogRoute = require('./routes/blog')
+
+
+const { checkForAuthenticationCookie } = require('./middleware/authentication')
 
 const app = express()
 PORT = 8001;
@@ -27,16 +31,20 @@ app.set('views', path.resolve('./views'))
 
 
 app.use(express.urlencoded({ extended: false }));
-app.use('/user', userRoute);
-app.use('/blog', blogRoute);
+app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(checkForAuthenticationCookie('token'));
+app.use(checkForAuthenticationCookie("token"));
+app.use(express.static(path.resolve("./public")));
 
-app.get('/', (req, res) => {
-    res.render('home', {
-        user: req.user
-    })
-})
+
+app.use("/user", userRoute);
+app.use("/blog", blogRoute);
+
+app.get("/", async (req, res) => {
+    res.render("home", {
+        user: req.user,
+    });
+});
 
 
 app.listen(PORT, () => console.log(`Server is running at http://localhost:8001`))
