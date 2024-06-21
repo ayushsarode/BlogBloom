@@ -55,12 +55,14 @@
 <%- include('./partials/nav.ejs') %>
     
 
-<% if (locals.error) { %>
-    <div class="mx-5 my-2">
-    <div id="alert" class="alert alert-danger" role="alert" style="transition: opacity 1s;">
-        <%= locals.error %>!
+    <% if (locals.error) { %>
+        <div class="mx-5 my-2">
+        <div id="alert" class="alert alert-danger" role="alert" style="transition: opacity 1s;">
+            <%= locals.error %>!
+        </div>
     </div>
-</div>
+
+
     <script>
         setTimeout(function() {
             var alertElement = document.getElementById('alert');
