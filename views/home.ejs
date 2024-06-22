@@ -3,18 +3,70 @@
 
 <head>
 
-        <title>BloomBlog</title>
-        <%- include('./partials/head.ejs') %>
+  <title>BloomBlog</title>
+  <%- include('./partials/head.ejs') %>
 
 </head>
 
-<body style="background-color: black;">
-<%- include('./partials/nav.ejs') %>
-<div style="color: white;">
+<body style="background-color: black; color: black;">
+  <%- include('./partials/nav.ejs') %>
+    <div style="color: white;">
+      <div class="container mt-5 justify-content-cente">
+        <% blogs.forEach(blog=> {
+          let truncatedBody = blog.body.split(' ').slice(0, 40).join(' ') + ("...");
+          %>
+          <div class="card mb-4" style="max-width: 940px; margin: 0 auto;">
+            <div class="row g-0 p-3">
+              <div class="col-md-4 d-flex align-items-center">
+                <img src="<%= blog.coverImageURL %>" class="img-fluid rounded-start" alt="...">
+              </div>
 
+              <div class="col-md-8" style="color: black;">
+                <div class="card-body" style="height: 210px;">
+                  <h5 class="card-title">
+                    <%= blog.title %>
+                  </h5>
+                  <p class="card-text" style="max-height: 100px;">
+                    <%= truncatedBody %>
+                  </p>
+                  <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }); %>
+      </div>
 
-</div>
-    <%- include('./partials/scripts.ejs') %>
+      <%- include('./partials/scripts.ejs') %>
 </body>
+
+<style>
+  .card-body {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: space-between; Space out elements, pushing button to bottom */
+    height: 00px;
+    /* Ensures the height remains fixed */
+  }
+
+  .card-title {
+    margin-top: 0;
+    /* Remove the default bottom margin */
+    max-height: 50px;
+  }
+
+  h5 {
+    max-height: 50px;
+  }
+
+  .card-body {
+    margin-top: 10px;
+  }
+
+  .card-body .btn {
+    align-self: flex-end;
+    /* Ensures button is at the bottom */
+  }
+</style>
 
 </html>
