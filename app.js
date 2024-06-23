@@ -19,8 +19,6 @@ PORT = process.env.PORT || 8001 ;
 
 // Mongoose connection options
 const mongooseOptions = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
     serverSelectionTimeoutMS: 30000, 
   };
   
