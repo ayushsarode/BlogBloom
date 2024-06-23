@@ -17,12 +17,21 @@ PORT = process.env.PORT || 8001 ;
 
 
 
-mongoose.connect(process.env.MONGO_URL)
+// Mongoose connection options
+const mongooseOptions = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000, 
+  };
+  
+  // Connect to MongoDB
+  mongoose.connect(process.env.MONGO_URL, mongooseOptions)
     .then(() => {
-        console.log('MongoDB server is running');
+      console.log('MongoDB server is running');
     })
     .catch(err => {
-        console.error('Connection error', err);
+      console.error('MongoDB connection error:', err);
+      process.exit(1); 
     });
 
 
