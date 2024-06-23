@@ -13,9 +13,11 @@ const blogRoute = require('./routes/blog')
 const { checkForAuthenticationCookie } = require('./middleware/authentication')
 
 const app = express()
-PORT = 8001;
+PORT = process.env.PORT || 8001 ;
 
-mongoose.connect('mongodb://localhost:27017/bloomblog')
+
+
+mongoose.connect(process.env.MONGO_URL)
     .then(() => {
         console.log('MongoDB server is running');
     })
