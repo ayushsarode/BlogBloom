@@ -17,19 +17,12 @@ PORT = process.env.PORT || 8001 ;
 
 
 
-// Mongoose connection options
-const mongooseOptions = {
-    serverSelectionTimeoutMS: 30000, 
-  };
-  
-  // Connect to MongoDB
-  mongoose.connect(process.env.MONGO_URL, mongooseOptions)
+mongoose.connect(process.env.MONGO_URL)
     .then(() => {
-      console.log('MongoDB server is running');
+        console.log('MongoDB server is running');
     })
     .catch(err => {
-      console.error('MongoDB connection error:', err);
-      process.exit(1); 
+        console.error('Connection error', err);
     });
 
 
@@ -54,6 +47,7 @@ app.get("/", async (req, res) => {
     res.render("home", {
         user: req.user,
         blogs: allBlogs,
+        name: req.user.fullName
     });
 });
 
